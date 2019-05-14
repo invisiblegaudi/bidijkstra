@@ -1,71 +1,66 @@
-const dfsTree = require('./dfs.stub.json.js')
-// const Dijkstra = require('../dijkstra.js')
-// const BFS = require('../bfs_p.js')
-// TODO test stub, convert to MAP
-
-class GraphNode {
-  constructor(graph={}) {
-    this.adjacentNodes = []
-    this.root = graph || {}
-    this.adjacentNodes = graph || {}
-  }
-  set root(graph={}) {
-    this.root = Object.keys(graph)[0]
-  }
-  set adjacentNodes(graph={}){
-    this.adjacentNodes = Object.values(graph)[0]
-  }
-  get adjacentNodes() {
-    return this.adjacentNodes.apply(node=> new Map(node))
-  }
-
-}
-
-class DFSNode {
-  
-}
+const dfsGraph = require('./dfs.stub.json.js')
+const hlessGraph = require('./hless.stub.json.js')
 
 const search = (graph=[],target='',getAdjacentNodes=async()=>[]) => {  //TODO get/set reverse flag via method
   let found = false
 
-  // TODO queue accepts an array of objects
- //  const queue = sort? branch : branch.reverse() // TODO this is the heuristic, enqueue method should convert to WeakMap and add to the queue
-  let queue = graph.slice().reverse(),
+  let stack = graph instanceof Array ? graph.slice().reverse() : [],  //TODO stack as Set?
       visited = []
 
-  while(queue.length && !found) {
-    let next = queue.pop()
-    const getNode = (items,obj) => Object[items](obj)[0] // gets the first value from array returned by object method
+  while(stack.length && !found) {
 
-    console.log(next)
+    const pop = stack => {return {next:stack.slice(-1)[0],stack:stack.slice(0,-1)}}
+    const getNode = (items,obj) => obj instanceof Object ? Object[items](obj)[0] : null // TODO node as Weakmap?
+
+    let next
+    ({next,stack} = pop(stack))
+
     let node = getNode('keys',next),
-        adjacentNodes = getAdjacentNodes(queue.slice(),visited.slice())
+        adjacentNodes = getAdjacentNodes(stack.slice(),visited.slice()) //TODO heuristic, async by default?
 
-    visited = [...visited,...(node?node:[])],
+    visited = [...visited,...(node?node:[])]
 
     found = node && node===target
 
-    queue = [
+    stack = [
       ...(adjacentNodes && adjacentNodes.length ? getNode(adjacentNodes,'values') : []),
-      ...queue
+      ...stack
     ]
 
   }
   return visited
 }
 
-const chai = require('chai');
-const assertArrays = require('chai-arrays');
-chai.should()
-chai.use(assertArrays);
+const dfs = (queue,visited) => {}
 
-describe('Depth first search', function(){
+const chai = require('chai');
+chai.should()
+chai.use(require('chai-fuzzy'));
+describe('Heuristicless search', function(){
+
   it('default params dont throw error and return array',()=>{
-    search().should.equal([])
+    search().should.be.like([])
   })
-  it('searches traverses nodes in expected order',()=>{
-    let arrToz = [...Array(26)].map(_=>(++i).toString(36),i=9)
-    search(dfsTree,'z').should.equal(arrToz)
+  it('visits all top nodes in order',()=>{
+    let arr2j = [...Array(10)].map(_=>(++i).toString(36),i=9) // array of chars a to j in alphabetical order
+    search(hlessGraph,'j').should.be.like(arr2j)
+    search(hlessGraph,'k').should.not.be.like(arr2j)
+    search([{false:false},{null:null},{NaN:NaN},{Infinity:Infinity},{0:0}],'z')
+      .should.be.like('falsenullNaNInfinity0'.split(''))
+  })
+  it('returns empty array for bad inputs',()=>{
+    search([false,null,NaN,Infinity,0,1,'a'],'z').should.be.like([])
+    search(null).should.be.like([])
+    search(false).should.be.like([])
+    search(NaN).should.be.like([])
+    search(Infinity).should.be.like([])
+    search(0).should.be.like([])
+    search([]).should.be.like([])
+    search({}).should.be.like([])
+    search('a').should.be.like([])
+    search(1).should.be.like([])
+    search(new Map()).should.be.like([])
+    search(new Set()).should.be.like([])
   })
 })
 
