@@ -19,18 +19,11 @@ describe('Heuristicless search', function(){
       .should.be.like('falsenullNaNInfinity0'.split(''))
   })
   it('returns empty array for bad inputs',()=>{
-    search([false,null,NaN,Infinity,0,1,'a'],'z').should.be.like([])
-    search(null).should.be.like([])
-    search(false).should.be.like([])
-    search(NaN).should.be.like([])
-    search(Infinity).should.be.like([])
-    search(0).should.be.like([])
-    search([]).should.be.like([])
-    search({}).should.be.like([])
-    search('a').should.be.like([])
-    search(1).should.be.like([])
-    search(new Map()).should.be.like([])
-    search(new Set()).should.be.like([])
+    const input = [false,null,NaN,Infinity,0,1,'a']
+    search(input,'z').should.be.like([])
+    input.forEach(i=>search(i).should.be.like([]))
+    input.forEach(i=>search(null,i).should.be.like([]))
+    input.forEach(i=>search(null,null,i).should.be.like([]))
   })
 })
 
