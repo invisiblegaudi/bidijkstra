@@ -37,9 +37,9 @@ describe('Depth first search',()=>{
     search(dfsGraph,'z',dfs).should.be.like(arrAtoz)
   })
 })
-describe('Breadth first search',()=>{
-  it('visits all node in dfs order',()=>{
-    let arrAtoz = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
-    search(bfsGraph,'z',bfs)
-  })
-})
+// describe('Breadth first search',()=>{
+//   it('visits all node in dfs order',()=>{
+//     let arrAtoz = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
+//     search(bfsGraph,'z',bfs)
+//   })
+// })
