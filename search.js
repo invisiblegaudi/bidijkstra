@@ -10,7 +10,7 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
   while(stack.length && !found) {
 
     const pop = stack => {return {next:stack.slice(0,1)[0],stack:stack.slice(1)}}
-  // TODO node as Weakmap?
+    // TODO node as Weakmap?
 
     let next
     ({next,stack} = pop(stack))
@@ -23,9 +23,9 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
     found = node && node===target
 
     stack = [
-         ...(adjacentNodes && adjacentNodes.length ? adjacentNodes : []),
+      ...(adjacentNodes && adjacentNodes.length ? adjacentNodes : []),
       ...stack,
-]
+    ]
 
   }
   return visited
