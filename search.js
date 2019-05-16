@@ -26,9 +26,7 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
 
     found = node && node===target
 
-    stack = [
-      ...(adjacentNodes && adjacentNodes.length ? adjacentNodes : stack),
-    ]
+    stack = [...(adjacentNodes && adjacentNodes.length ? adjacentNodes : stack),]
 
   }
   return visited
