@@ -7,8 +7,12 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
   let stack = graph instanceof Array ? graph.slice() : [],  //TODO stack as Set?
       visited = []
 
-  while(stack.length && !found) {
+  let i=0//TODO remove this
 
+  while(stack.length && !found
+        // && i<5
+       ) {
+    i++
     const pop = stack => {return {next:stack.slice(0,1)[0],stack:stack.slice(1)}}
     // TODO node as Weakmap?
 
@@ -23,8 +27,7 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
     found = node && node===target
 
     stack = [
-      ...(adjacentNodes && adjacentNodes.length ? adjacentNodes : []),
-      ...stack,
+      ...(adjacentNodes && adjacentNodes.length ? adjacentNodes : stack),
     ]
 
   }

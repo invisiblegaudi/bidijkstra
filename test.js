@@ -34,7 +34,7 @@ describe('Depth first search',()=>{
   })
   it('searches all nodes in dfs order',()=>{
     let arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
-    search(dfsGraph,'z',dfs).should.be.like(arrAtoz)
+    search(dfsGraph,'z',dfs).should.be.like(arrAtoZ)
   })
 })
 describe('Breadth first search',()=>{
