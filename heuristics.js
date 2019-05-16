@@ -7,12 +7,7 @@ const dfs = (node,stack) => {
     ...getChildren(node),
     ...stack
   ]
-} //depth first search
-
-// const bfs = node => {
-//   return node instanceof Object && Object.values(node)[0].length ? [] : node  //breadth first search
-// }
-
+} 
 const bfs = (node,stack,visited) => {
 
   const result =
