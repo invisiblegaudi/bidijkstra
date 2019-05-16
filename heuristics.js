@@ -2,21 +2,14 @@
 
 const {getChildren} = require('./graph.js')
 
-const dfs = (node,stack) => {
-  return  [
+const dfs = (node={},stack=[]) => [
     ...getChildren(node),
-    ...stack
+    ...stack,
   ]
-}
 
-const bfs = (node,stack,visited) => {
-
-  const result =
-    [
+const bfs = (node={},stack=[],visited=[]) => [
       ...stack,
       ...getChildren(node),
     ]
 
-  return result
-}
 module.exports = {dfs,bfs}
