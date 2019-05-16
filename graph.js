@@ -1,6 +1,9 @@
 // graph structure defined by these fns
 
-const getNode = (items='',obj={}) => obj instanceof Object ? Object[items](obj)[0] : []
-const getChildren = (node={}) => getNode('values',node) ? getNode('values',node) : []
+const getObj = (items='',obj={}) => obj instanceof Object ? Object[items](obj)[0] : []
+
+const getNode = (node={}) => getObj('keys',node) ? getObj('keys',node) : []
+
+const getChildren = (node={}) => getObj('values',node) ? getObj('values',node) : []
 
 module.exports = {getNode,getChildren}

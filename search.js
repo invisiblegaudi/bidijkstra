@@ -1,6 +1,6 @@
-const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[]) => {  //TODO get/set reverse flag via method
+const {getNode,getChildren} = require('./graph.js')
 
-  const getNode = (items,obj) => obj instanceof Object ? Object[items](obj)[0] : null
+const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[]) => {  //TODO get/set reverse flag via method
 
   let found = false
 
@@ -19,7 +19,7 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
     let next
     ({next,stack} = pop(stack))
 
-    let node = getNode('keys',next),
+    let node = getNode(next),
         adjacentNodes = getAdjacentNodes(next,stack.slice(),visited.slice()) //TODO heuristic, async by default?
 
     visited = [...visited,...(node ? node : [])]
