@@ -15,9 +15,9 @@ describe('Heuristicless search', ()=>{
     search().should.be.like([])
   })
   it('visits all top nodes in order',()=>{
-    let arrAtoj = [...Array(10)].map(_=>(++i).toString(36),i=9) // array of chars a to j in alphabetical order
-    search(hlessGraph,'j').should.be.like(arrAtoj)
-    search(hlessGraph,'k').should.not.be.like(arrAtoj)
+    let arrAtoJ = [...Array(10)].map(_=>(++i).toString(36),i=9) // array of chars a to j in alphabetical order
+    search(hlessGraph,'j').should.be.like(arrAtoJ)
+    search(hlessGraph,'k').should.not.be.like(arrAtoJ)
     search([{false:false},{null:null},{NaN:NaN},{Infinity:Infinity},{0:0}],'z')
       .should.be.like('falsenullNaNInfinity0'.split(''))
   })
@@ -33,13 +33,13 @@ describe('Depth first search',()=>{
     input.forEach(i=>dfs(i).should.be.like([]))
   })
   it('searches all nodes in dfs order',()=>{
-    let arrAtoz = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
+    let arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
     search(dfsGraph,'z',dfs).should.be.like(arrAtoz)
   })
 })
-// describe('Breadth first search',()=>{
-//   it('visits all node in dfs order',()=>{
-//     let arrAtoz = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
-//     search(bfsGraph,'z',bfs)
-//   })
-// })
+describe('Breadth first search',()=>{
+  it('visits all node in dfs order',()=>{
+    let arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
+    search(bfsGraph,'z',bfs).should.be.like(arrAtoZ)
+  })
+})
