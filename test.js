@@ -1,11 +1,12 @@
 const search = require('./search.js')
-const {dfs,bfs} = require('./heuristics.js')
+const {dfs,bfs,dijkstra} = require('./heuristics.js')
 const dfsGraph = require('./dfs.mock.json.js')
 const bfsGraph = require('./bfs.mock.json.js')
 const hlessGraph = require('./hless.mock.json.js')
 const chai = require('chai')
 
 const input = [false,null,NaN,Infinity,0,1,'a']
+const  arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical orde
 
 chai.should()
 chai.use(require('chai-fuzzy'))
@@ -28,18 +29,24 @@ describe('Heuristicless search', ()=>{
     input.forEach(i=>search(null,null,i).should.be.like([]))
   })
 })
+
 describe('Depth first search',()=>{
   it('returns empty array for bad inputs',()=>{
     input.forEach(i=>dfs(i).should.be.like([]))
   })
   it('searches all nodes in dfs order',()=>{
-    let arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
     search(dfsGraph,'z',dfs).should.be.like(arrAtoZ)
   })
 })
+
 describe('Breadth first search',()=>{
   it('visits all node in dfs order',()=>{
-    let arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical order
     search(bfsGraph,'z',bfs).should.be.like(arrAtoZ)
+  })
+})
+
+describe('Dijkstra search',()=>{
+  it('visits all nodes in alphabetical order',()=>{
+    search(bfsGraph,'z',dijkstra).should.be.like(arrAtoZ)
   })
 })
