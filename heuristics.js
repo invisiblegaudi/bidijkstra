@@ -24,18 +24,20 @@ const dijkstra = (node={},stack=[],visited=[]) => {
   const nodeAttrs = n => n[getNode(n)]
   const alphaDist = (d,j) => Math.abs(d.charCodeAt() - j.charCodeAt())
 
-  const stackDistance = current[name].adjacent.length ?
-        [...stack,...current[name].adjacent]  // bfs, dfs insertion here?
-        .map(n=>nodeAttrs(n) && nodeAttrs(n).distance ?
-             {[getNode(n)]:{...nodeAttrs(n),distance:Infinity}} :
-             n)
+  const stackDistance = [
+    ...stack,
+    ...(current[name].adjacent.length
+        ? current[name].adjacent
+        : [])
+  ]  // bfs, dfs insertion here?
+        // .map(n=>new Object({[getNode(n)]:{adjacent:getChildren(n),distance:alphaDist(name,getNode(n))}}))
         // .map(console.log)
         // .map(n=>
         //      new Object(
         //        {[getNode(n)]:{adjacent:getChildren(n),distance:alphaDist(name,getNode(n))}}
         //      ))
-        : []
 
+  console.log(stackDistance)
   return stackDistance
 
 }
