@@ -15,29 +15,22 @@ const bfs = (node={},stack=[],visited=[]) => [
 const dijkstra = (node={},stack=[],visited=[]) => {
 
   const name = getNode(node)
+  const childNodes = getChildren(node)
+  const adjacent = "adjacent" in childNodes ? childNodes.adjacent : childNodes
 
-  const current = !node.distance ?
-        new Object(
-          {[name] : {adjacent:getChildren(node),distance:Infinity}}
-        ) : node
-
-  const nodeAttrs = n => n[getNode(n)]
   const alphaDist = (d,j) => Math.abs(d.charCodeAt() - j.charCodeAt())
+  
+  const dijkNode = n => Object.assign({},
+                                      {[getNode(n)]:{
+                                        adjacent,
+                                        distance:alphaDist(name,getNode(n))
+                                      }})
 
-  const stackDistance = [
-    ...stack,
-    ...(current[name].adjacent.length
-        ? current[name].adjacent
-        : [])
-  ]  // bfs, dfs insertion here?
-        // .map(n=>new Object({[getNode(n)]:{adjacent:getChildren(n),distance:alphaDist(name,getNode(n))}}))
-        // .map(console.log)
-        // .map(n=>
-        //      new Object(
-        //        {[getNode(n)]:{adjacent:getChildren(n),distance:alphaDist(name,getNode(n))}}
-        //      ))
+  const stackDistance = [...adjacent, ...stack]
+        .filter(n=>!visited.includes(getNode(n)))
+        .map(dijkNode)
+        .sort((d,j)=>d.distance-j.distance)
 
-  console.log(stackDistance)
   return stackDistance
 
 }
