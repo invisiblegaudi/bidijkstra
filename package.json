@@ -4,7 +4,8 @@
 	"description": "bi-directional dijkstra search",
 	"main": "search",
 	"scripts": {
-		"start": "nodemon -e js,json --exec mocha"
+    "test": "nodemon -e js,json --exec mocha",
+		"start": "nodemon -e js,json --exec node index.js"
 	},
 	"author": "info@oak-means.com",
 	"license": "MIT",

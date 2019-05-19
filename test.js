@@ -47,7 +47,6 @@ describe('Breadth first search',()=>{
 
 describe('Dijkstra search',()=>{
   it('visits all nodes in alphabetical order',()=>{
-    search(bfsGraph,'z',dijkstra)
-      //.should.be.like(arrAtoZ)
+    search(bfsGraph,'z',dijkstra).should.be.like(arrAtoZ)
   })
 })

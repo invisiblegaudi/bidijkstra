@@ -15,6 +15,7 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
 
     let node = getNode(next),
         adjacentNodes = getAdjacentNodes(next,stack.slice(),visited.slice())
+
     //TODO heuristic, async by default?
 
     visited = [...visited,...(node ? node : [])]
