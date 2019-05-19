@@ -6,4 +6,4 @@ const getNode = (node={}) => getObj('keys',node) ? getObj('keys',node) : []
 
 const getChildren = (node={}) => getObj('values',node) ? getObj('values',node) : []
 
-xmodule.exports = {getNode,getChildren}
+module.exports = {getNode,getChildren}
