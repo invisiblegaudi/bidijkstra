@@ -7,7 +7,7 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
       stack = graph instanceof Array ? graph.slice() : [],  //TODO stack as Set?
       visited = [] //TODO visited as Set?
 
-  const pop = stack => { return { next:stack.slice(0,1)[0],stack:stack.slice(1) } }  // TODO make generic
+  const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
   while(stack.length && !found) {
 
