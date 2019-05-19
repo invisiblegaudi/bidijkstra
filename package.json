@@ -4,7 +4,7 @@
 	"description": "bi-directional dijkstra search",
 	"main": "search",
 	"scripts": {
-    "test": "nodemon -e js,json --exec mocha",
+		"test": "nodemon -e js,json --exec mocha",
 		"start": "nodemon -e js,json --exec node index.js"
 	},
 	"author": "info@oak-means.com",
@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"chai": "^4.2.0",
 		"chai-arrays": "^2.0.0",
-	  "chai-fuzzy": "^1.6.1",
+		"chai-fuzzy": "^1.6.1",
 		"eslint": "^5.16.0",
 		"mocha": "^6.1.4"
 	}

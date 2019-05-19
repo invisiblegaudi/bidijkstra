@@ -1,11 +1,10 @@
 const {getNode,getChildren} = require('./graph.js')
 
 const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[]) => {
-  //TODO search direction?
 
   let found = false,
-      stack = graph instanceof Array ? graph.slice() : [],  //TODO stack as Set?
-      visited = [] //TODO visited as Set?
+      stack = graph instanceof Array ? graph.slice() : [],
+      visited = [] 
 
   const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
@@ -15,8 +14,6 @@ const search = (graph=[],target='',getAdjacentNodes=async(next,stack,visited)=>[
 
     let node = getNode(next),
         adjacentNodes = getAdjacentNodes(next,stack.slice(),visited.slice())
-
-    //TODO heuristic, async by default?
 
     visited = [...visited,...(node ? node : [])]
 

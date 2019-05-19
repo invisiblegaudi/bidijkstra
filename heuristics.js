@@ -27,7 +27,6 @@ const dijkstra = (node={},stack=[],visited=[]) => {
       distance:calcDist(node,n)
     }})
 
-
   const dijkStack = [...getAdjacent(node),...stack]
         .filter(n=>!visited.includes(getNode(n)))
         .map(dijkNode)
