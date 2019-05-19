@@ -31,7 +31,6 @@ const dijkstra = (node={},stack=[],visited=[]) => {
   const stackDistance = [...getAdjacent(node),...stack]
         .filter(n=>!visited.includes(getNode(n)))
         .map(dijkNode)
-//        .sort((d,j)=>d.distance-j.distance)
         .sort((d,j)=>getDistance(d)-getDistance(j))
 
   return stackDistance
