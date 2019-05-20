@@ -7,24 +7,22 @@ const graphs = {bfs,dfs}
 function* search (
   algorithm=()=>[],
   target='',
-  graphName=[], //TODO get from algorithm
+  graphName=[],
   heuristic,
 ) {
 
   let found = false, graph = graphs[graphName],
-      stack = graph instanceof Array ? graph.slice() : [], //TODO get from algorithm
+      stack = graph instanceof Array ? graph.slice() : [],
       visited = []
 
   const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
-  while(stack.length && !found) { //TODO: while loop goes outside
+  while(stack.length && !found) { 
 
     let next; ({next,stack} = pop(stack))
 
     let node = getNode(next),
         adjacentNodes = algorithm(next,stack.slice(),visited.slice(),heuristics[heuristic])  //
-
-    //Todo send adjacentnodes to algorthim (dijkstra) and add result to stack
 
     visited = [...visited,...(node ? node : [])]
 

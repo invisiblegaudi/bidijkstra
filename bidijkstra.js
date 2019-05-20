@@ -22,13 +22,13 @@ const bidijkstra = (node1,graph1,heuristic1,node2,graph2,heuristic2,cb) => {
     isMatch = match(path1,path2).length
 
     return isMatch? cb(isMatch) : null
-    }
+  }
   const comparePath2 = path => {
     path2 = path
     isMatch = match(path1,path2).length
 
     return isMatch? cb(isMatch) : null
- }
+  }
 
   search1.on('message',comparePath1)
   search2.on('message',comparePath2)
