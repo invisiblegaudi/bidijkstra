@@ -5,12 +5,7 @@ const bfs_rev = require('./bfs_rev.mock.json.js')
 const dfs = require('./dfs.mock.json.js')
 const graphs = {bfs,dfs,bfs_rev}
 
-function* search (
-  algorithm=()=>[],
-  target='',
-  graphName=[],
-  heuristic,
-) {
+function* search (algorithm=()=>[], target='', graphName=[], heuristic) {
 
   let found = false, graph = graphs[graphName],
       stack = graph instanceof Array ? graph.slice() : [],
@@ -18,7 +13,7 @@ function* search (
 
   const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
-  while(stack.length && !found) { 
+  while(stack.length && !found) {
 
     let next; ({next,stack} = pop(stack))
 
