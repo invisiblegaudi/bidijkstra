@@ -18,6 +18,10 @@ In addition, I wanted it to
 * make use of es6+
 * be fun to write (e.g. no trailing commas)
 
+Usage
+---
+Right now if you 
+
 TODO
 ---
 * more functional

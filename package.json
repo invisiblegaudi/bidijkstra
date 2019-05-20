@@ -2,10 +2,10 @@
 	"name": "bidijkstra",
 	"version": "0.5.0",
 	"description": "bi-directional dijkstra search",
-	"main": "search",
+	"main": "index.js",
 	"scripts": {
 		"test": "nodemon -e js,json --exec mocha",
-		"start": "nodemon -e js,json --exec node index.js"
+		"start": "nodemon -e js,json --exec node examples.js"
 	},
 	"author": "info@oak-means.com",
 	"license": "MIT",
@@ -15,5 +15,9 @@
 		"chai-fuzzy": "^1.6.1",
 		"eslint": "^5.16.0",
 		"mocha": "^6.1.4"
-	}
+	},
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/invisiblegaudi/bidijkstra"
+  }
 }
