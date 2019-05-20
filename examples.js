@@ -1,3 +1,3 @@
 const bidijkstra = require('./bidijkstra')
 
-bidijkstra('a','bfs','charDist','z','bfs','charDist',console.log)
+bidijkstra('z','bfs','charDist','a','bfs_rev','charDistRev',console.log)

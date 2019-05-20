@@ -1,8 +1,9 @@
 const {getNode} = require('./graph.js')
 const heuristics = require('./heuristic.js')
 const bfs = require('./bfs.mock.json.js')
+const bfs_rev = require('./bfs_rev.mock.json.js')
 const dfs = require('./dfs.mock.json.js')
-const graphs = {bfs,dfs}
+const graphs = {bfs,dfs,bfs_rev}
 
 function* search (
   algorithm=()=>[],

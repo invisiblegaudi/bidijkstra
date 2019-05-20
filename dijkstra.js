@@ -11,8 +11,7 @@ const dijkSearch = (subscriber=()=>null,...args) => {
 
   while(!path.done) {
     visited = path.value
-    console.log(visited)
-    subscriber.send(JSON.stringify(visited))
+    subscriber.send({visited})
     path = dijkSearching.next()
   }
 
