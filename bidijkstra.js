@@ -9,18 +9,12 @@ const bidijkstra = (node1,graph1,heuristic1,node2,graph2,heuristic2,cb=()=>false
 
   const status1 = search => {
     path1 = search.visited
-    match = path1.filter((n)=>path2.includes(n)).length > 0
-    if(match===true) {
-      finish()
-   }
+    match = path1.reduce((m,n)=>path2.includes(n),false) ? finish() : false
   }
 
   const status2 = search => {
     path2 = search.visited
-    match = path2.filter((n)=>path1.includes(n)).length > 0
-    if(match===true) {
-      finish()
-    }
+    match = path2.reduce((m,n)=>path1.includes(n),false) ? finish() : false
   }
 
   const finish = () => {
