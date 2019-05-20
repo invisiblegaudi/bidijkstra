@@ -7,15 +7,15 @@ const dijkSearch = (subscriber=()=>null,...args) => {
 
   const dijkSearching = dijkInit(...args)
 
-  let visited, path = dijkSearching.next()
+  let path, search = dijkSearching.next()
 
-  while(!path.done) {
-    visited = path.value
-    subscriber.send({visited})
-    path = dijkSearching.next()
+  while(!search.done) {
+    path = search.value
+    subscriber.send({path})
+    search = dijkSearching.next()
   }
 
-  return visited
+  return path
 
 }
 

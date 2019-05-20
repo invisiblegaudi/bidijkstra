@@ -6,19 +6,25 @@ const hlessGraph = require('./hless.mock.json.js')
 const chai = require('chai')
 
 const input = [false,null,NaN,Infinity,0,1,'a']
-const  arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical orde
+const arrAtoZ = [...Array(26)].map(_=>(++i).toString(36),i=9) // array of chars a to z in alphabetical orde
 
 chai.should()
 chai.use(require('chai-fuzzy'))
-describe('Heuristicless search', ()=>{
+describe('Shallow / Algorithmless search', ()=>{
 
   it('default params dont throw error and return array',()=>{
-    search().should.be.like([])
+    search().next().value.should.be.like([])
   })
   it('visits all top nodes in order',()=>{
-    let arrAtoJ = [...Array(10)].map(_=>(++i).toString(36),i=9) // array of chars a to j in alphabetical order
-    search(hlessGraph,'j').should.be.like(arrAtoJ)
-    search(hlessGraph,'k').should.not.be.like(arrAtoJ)
+
+    const searchAtoJ = search(()=>{},'j','bfs','charDist')
+    let path
+    while(!searchAtoJ.next().done) path = searchAtoJ.next().value
+    path.should.be.like(arrAtoZ.slice(0,7))
+    const searchAtoD = search(()=>{},'d','bfs','charDist')
+    while(!searchAtoJ.next().done) path = searchAtoJ.next().value
+    path.should.not.be.like(arrAtoZ.slice(0,3))
+
     search([{false:false},{null:null},{NaN:NaN},{Infinity:Infinity},{0:0}],'z')
       .should.be.like('falsenullNaNInfinity0'.split(''))
   })

@@ -13,12 +13,14 @@ function* search (algorithm=()=>[], target='', graphName=[], heuristic) {
 
   const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
+  console.log(graphName)
+
   while(stack.length && !found) {
 
     let next; ({next,stack} = pop(stack))
 
     let node = getNode(next),
-        adjacentNodes = algorithm(next,stack.slice(),visited.slice(),heuristics[heuristic])  //
+        adjacentNodes = algorithm(next,stack.slice(),visited.slice(),heuristics[heuristic])
 
     visited = [...visited,...(node ? node : [])]
 
@@ -29,6 +31,8 @@ function* search (algorithm=()=>[], target='', graphName=[], heuristic) {
     yield visited
 
   }
+
+  return visited
 
 }
 
