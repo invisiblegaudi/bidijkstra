@@ -7,12 +7,12 @@ const dfs = (node={},stack=[]) => [
   ...stack,
 ]
 
-const bfs = (node={},stack=[],visited=[]) => [
+const bfs = (node={},stack=[]) => [
   ...stack,
   ...getChildren(node),
 ]
 
-const dijkstra = (node={},stack=[],visited=[],heuristic) => {
+const dijkstra = (node={},stack=[],visited=[],heuristic=()=>Infinity)=> {
 
   const getAdjacent = n => "adjacent" in getChildren(n) ? getChildren(n).adjacent : getChildren(n) //TODO move out...pass in adjnodesj and make async (get from init params)
   const calcDist = (d,j) => heuristic(getNode(d),getNode(j))
@@ -25,9 +25,10 @@ const dijkstra = (node={},stack=[],visited=[],heuristic) => {
       distance:calcDist(node,n)
     }})
 
-  const dijkStack = [...getAdjacent(node), //TODO get from param
-                     ...stack 
-                    ]
+  const dijkStack = [
+    ...getAdjacent(node), //TODO get from param
+    ...stack
+  ]
         .filter(n=>!visited.includes(getNode(n)))
         .map(dijkNode)
         .sort((d,j)=>getDistance(d)-getDistance(j))

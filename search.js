@@ -1,23 +1,30 @@
-const {getNode,getChildren} = require('./graph.js')
+const {getNode} = require('./graph.js')
+const heuristics = require('./heuristic.js')
+const bfs = require('./bfs.mock.json.js')
+const dfs = require('./dfs.mock.json.js')
+const graphs = {bfs,dfs}
 
-const search = (
-  graph=[], //TODO get from getAdjacentNodes
-  target='',getAdjacentNodes=async(next,stack,visited,heuristic)=>[],heuristic) => {
+function* search (
+  algorithm=()=>[],
+  target='',
+  graphName=[], //TODO get from algorithm
+  heuristic,
+) {
 
-  let found = false,
-      stack = graph instanceof Array ? graph.slice() : [], //TODO get from getAdjacentNodes
+  let found = false, graph = graphs[graphName],
+      stack = graph instanceof Array ? graph.slice() : [], //TODO get from algorithm
       visited = []
 
   const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
-  while(stack.length && !found) {
+  while(stack.length && !found) { //TODO: while loop goes outside
 
     let next; ({next,stack} = pop(stack))
 
     let node = getNode(next),
-        adjacentNodes = getAdjacentNodes(next,stack.slice(),visited.slice(),heuristic)  //
+        adjacentNodes = algorithm(next,stack.slice(),visited.slice(),heuristics[heuristic])  //
 
-    //TODO send adjacentnodes to algorthim (dijkstra) and add result to stack
+    //Todo send adjacentnodes to algorthim (dijkstra) and add result to stack
 
     visited = [...visited,...(node ? node : [])]
 
@@ -25,9 +32,9 @@ const search = (
 
     stack = [...(adjacentNodes && adjacentNodes.length ? adjacentNodes : stack)]
 
-  }
+    yield visited
 
-  return visited  //TODO yield from inside loop
+  }
 
 }
 

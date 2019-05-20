@@ -3,3 +3,4 @@
 const charDist = (d,j) => Math.abs(d.charCodeAt() - j.charCodeAt())
 
 module.exports = {charDist}
+

@@ -1,5 +1,5 @@
 const search = require('./search.js')
-const {dfs,bfs,dijkstra} = require('./heuristics.js')
+const {dfs,bfs,dijkstra} = require('./heuristic.js')
 const dfsGraph = require('./dfs.mock.json.js')
 const bfsGraph = require('./bfs.mock.json.js')
 const hlessGraph = require('./hless.mock.json.js')
