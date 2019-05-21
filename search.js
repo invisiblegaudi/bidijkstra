@@ -13,8 +13,6 @@ function* search (algorithm=()=>[], target='', graphName=[], heuristic) {
 
   const pop = stack => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
-  console.log(graphName)
-
   while(stack.length && !found) {
 
     let next; ({next,stack} = pop(stack))
