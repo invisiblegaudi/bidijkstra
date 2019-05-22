@@ -32,6 +32,6 @@ Obviously (at only v0.5) this just only works and there much more to do
 * optimisation
 * browser compatable
 * chainable heuristic patterns
-* 3rd party symantic graph support
+* 3rd party symantic graph support & JSON-LD
 * fix the tests!
 * lovely comments

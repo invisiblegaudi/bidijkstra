@@ -1,11 +1,11 @@
 const bidijkstra = require('./bidijkstra')
-
-const search = require('./search')
-
-const shallow = search(()=>{},'j','bfs','charDist')
-
-let i = 0
-while (!shallow.next().done) console.log(shallow.next().value)
-
-bidijkstra('z','bfs','charDist','a','bfs_rev','charDistRev',console.log)
-
+let result
+getPath = async () => {
+   try {
+    result = await bidijkstra('z','bfs','charDist','a','bfs_rev','charDistRev')
+    console.log(result)
+   } catch(e) {
+     console.error(e)
+  }
+}
+getPath()

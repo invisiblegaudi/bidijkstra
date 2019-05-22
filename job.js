@@ -1,6 +1,6 @@
 const search = require('./search.js')
 
-const searchJob = (subscriber,...args) => {
+const searchJob = (subscriber=()=>({send:()=>null}),...args) => {
 
   const searching = search(...args)
 
@@ -8,6 +8,7 @@ const searchJob = (subscriber,...args) => {
       job = searching.next()
 
   while(!job.done) {
+
     path = job.value
     subscriber.send({path})
     job = searching.next()
@@ -17,7 +18,7 @@ const searchJob = (subscriber,...args) => {
 
 }
 
-const subscribeToJob = (sub=()=>({send:()=>null}),...args) => sub && sub.send
+const subscribeToJob = (sub,...args) => sub && sub.send
       ? searchJob(sub,...args) : new Error('Subscriber not a valid process!!')
 
 module.exports = {searchJob,subscribeToJob}

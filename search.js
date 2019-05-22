@@ -3,11 +3,10 @@ const heuristics = require('./heuristic.js')
 const bfs = require('./bfs.mock.json.js')
 const bfs_rev = require('./bfs_rev.mock.json.js')
 const dfs = require('./dfs.mock.json.js')
-const graphs = {bfs,dfs,bfs_rev}
 
-function* search (target='', graphName=[], algorithm=()=>[], heuristic) {
+function* search (target='', graph=[], algorithm=()=>[], heuristic) {
 
-  let found = false, graph = graphs[graphName],
+  let found = false,
       stack = graph instanceof Array ? graph.slice() : [],
       visited = []
 
