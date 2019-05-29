@@ -1,28 +1,16 @@
-const search = require('../search.js')
+const chai = require('chai')
+const fuzzy = require('chai-fuzzy')
+const {getPath} = require('../coroutines/search')
 const {dfs,bfs,dijkstra} = require('../algorithm')
 const {inputRange,arrAtoZ} = require('./mocks/ranges')
-const {charDist} = require('./mocks/ranges')
+const {charDist} = require('../heuristic')
 const {graphDFS,graphBFS,graphTypesDepth1} = require('./mocks/graphs')
 
-const chai = require('chai')
-
-const getPath = (...args) => {
-  let path,
-      job = {},
-      searching = search(...args)
-
-  while(!job.done) {
-    job = searching.next()
-    path = job.value ? job.value : path
-  }
-
-  return path
-}
-
 const should = chai.should()
+chai.use(fuzzy)
+
 should.should.have.property('fail')
 
-chai.use(require('chai-fuzzy'))
 describe('Shallow / Algorithmless search', ()=>{
 
   it('default params dont throw error and return array',()=>{
