@@ -21,7 +21,7 @@ const search = function *search (target='', graph=[], algorithm=()=>[], heuristi
     found = node && node===target
 
     stack = [...(adjacentNodes && adjacentNodes.length ? adjacentNodes : stack)]
- 
+
     yield visited
 
   }
