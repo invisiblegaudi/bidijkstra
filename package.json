@@ -14,7 +14,8 @@
 		"chai-arrays": "^2.0.0",
 		"chai-fuzzy": "^1.6.1",
 		"eslint": "^5.16.0",
-		"mocha": "^6.1.4"
+		"mocha": "^6.2.1",
+		"nodemon": "^1.19.4"
 	},
 	"repository": {
 		"type": "git",
