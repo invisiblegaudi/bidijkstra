@@ -24,8 +24,9 @@ const bidijkstra = (node1,graph1,heuristic1,node2,graph2,heuristic2) => {
 
       search1.kill()
       search2.kill()
-  //    console.log('done')
-      return done([...path1,...path2.reverse()])
+      const combinedPath = new Set([...path1, ...path2.reverse()])
+
+      return done([...combinedPath])
     }
 
     const status1 = search => {
