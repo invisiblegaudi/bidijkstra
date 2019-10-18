@@ -1,11 +1,12 @@
 const bidijkstra = require('./bidijkstra')
-let result
+let path
 getPath = async () => {
-   try {
-    result = await bidijkstra('z','bfs','charDist','a','bfs_rev','charDistRev')
-    console.log(result)
-   } catch(e) {
-     console.error(e)
+  let path
+  try {
+    path = await bidijkstra('z','graphBFS','charDist','a','graphBFSreverse','charDistRev')
+    console.log(path)
+  } catch(e) {
+    console.error(e)
   }
+  return path
 }
-getPath()

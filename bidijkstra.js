@@ -2,17 +2,16 @@ const p = require('child_process')
 
 const bidijkstra = (node1,graph1,heuristic1,node2,graph2,heuristic2) => {
 
-    const search1 = p.fork('./searchprocess.js',[node1,graph1,'dijkstra',heuristic1])
-    const search2 = p.fork('./searchprocess.js',[node2,graph2,'dijkstra',heuristic2])
+  const search1 = p.fork('./searchprocess.js',[node1,graph1,'dijkstra',heuristic1])
+  const search2 = p.fork('./searchprocess.js',[node2,graph2,'dijkstra',heuristic2])
 
-    let path1 = [],
-        path2 = [],
-        done
+  let path1 = [],
+      path2 = [],
+      done
 
   const result = new Promise(resolve => {
     done = resolve;
   })
-
 
    // console.log(search1)
     // TODO:

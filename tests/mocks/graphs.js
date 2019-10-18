@@ -24,6 +24,25 @@ const graphBFS = [
   {f:[]},
   {g:[]}
 ]
+const graphBFSreverse = [
+    {z:[
+        {s:[]},
+        {r:[
+            {m:[]},
+            {l:null},
+            {k:false},
+            {j:NaN},
+            {i:0}
+        ]},
+        {q:[{h:[{e:[]}]}]}
+    ]},
+    {y:[{p:[]}]},
+    {x:[]},
+    {w:[{o:[{g:[{d:[{b:[]}]}]}]}]},
+    {v:[{n:[{f:[{c:[{a:[]}]}]}]}]},
+    {u:[]},
+    {t:[]}
+]
 
 const graphDFS = [
   {a:[
@@ -45,4 +64,4 @@ const graphDFS = [
   {z:[]}
 ]
 
-module.exports = {graphTypeNodes,graphTypesDepth1,graphTypesDepth2,graphBFS,graphDFS}
+module.exports = {graphTypeNodes,graphTypesDepth1,graphTypesDepth2,graphBFS,graphBFSreverse,graphDFS}

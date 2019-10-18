@@ -4,11 +4,12 @@ const bfs = require('./bfs.mock.json.js')
 const bfs_rev = require('./bfs_rev.mock.json.js')
 const dfs = require('./dfs.mock.json.js')
 const {subscribeToJob} = require('./job.js')
+const mockGraphs = require('./tests/mocks/graphs')
 
 const searchProcess = async (...args) => {
 
   const [target,graph,algorithm,heuristic] = process && process.argv ? process.argv.slice(2) : [...args]
-  const graphs = {bfs,bfs_rev,dfs}
+  const graphs = {bfs,dfs,...mockGraphs}
 
   try {
     await subscribeToJob(

@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "nodemon -e js,json --exec 'mocha ./tests/*.spec.js' ",
-		"start": "nodemon -e js,json --exec node examples.js"
+		"start": "node examples.js"
 	},
 	"author": "info@oak-means.com",
 	"license": "MIT",

@@ -1,5 +1,3 @@
-const chai = require('chai')
-const fuzzy = require('chai-fuzzy')
 const {getPath} = require('../coroutines/search')
 const {dfs,bfs,dijkstra} = require('../algorithm')
 const {inputRange,arrAtoZ} = require('./mocks/ranges')
@@ -31,21 +29,23 @@ describe('Shallow / Algorithmless search', ()=>{
   })
 })
 
-describe('Depth first search',()=>{
+describe('Depth-first search',()=>{
   it('searches all nodes in dfs order',()=>{
     getPath('z',graphDFS,dfs).should.be.like(arrAtoZ)
   })
 })
 
-describe('Breadth first search',()=>{
+describe('Breadth-first search',()=>{
   it('visits all node in dfs order',()=>{
     getPath('z',graphBFS,bfs).should.be.like(arrAtoZ)
   })
 })
 
 describe('Dijkstra search',()=>{
-  it('visits all nodes in alphabetical order',()=>{
+  it('visits all nodes in alphabetical order in breadth-first ordered graph',()=>{
     getPath('z',graphBFS,dijkstra,charDist).should.be.like(arrAtoZ)
+  })
+  it('visits all nodes in alphabetical order in depth-first ordered graph',()=>{
     getPath('z',graphDFS,dijkstra,charDist).should.be.like(arrAtoZ)
   })
 })
