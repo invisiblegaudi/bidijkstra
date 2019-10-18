@@ -1,3 +1,5 @@
+const chai = require('chai')
+const fuzzy = require('chai-fuzzy')
 const {getPath} = require('../coroutines/search')
 const {dfs,bfs,dijkstra} = require('../algorithm')
 const {inputRange,arrAtoZ} = require('./mocks/ranges')
@@ -6,7 +8,6 @@ const {graphDFS,graphBFS,graphTypesDepth1} = require('./mocks/graphs')
 
 const should = chai.should()
 chai.use(fuzzy)
-
 should.should.have.property('fail')
 
 describe('Shallow / Algorithmless search', ()=>{
