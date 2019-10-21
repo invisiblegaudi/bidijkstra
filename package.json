@@ -3,7 +3,8 @@
 	"version": "0.6.2",
 	"description": "bi-directional dijkstra search",
 	"main": "index.js",
-	"scripts": {
+	  "scripts": {
+    "dev": "nodemon --exec npm start",
 		"test": "mocha ./tests/*.spec.js",
 		"start": "node examples.js"
 	},

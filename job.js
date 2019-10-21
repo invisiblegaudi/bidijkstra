@@ -13,6 +13,7 @@ const searchJob = (subscriber=()=>({send:()=>null}),...args) => {
     path = job.value
     subscriber.send({path})
     job = searching.next()
+
   }
 
   return path
