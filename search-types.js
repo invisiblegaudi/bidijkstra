@@ -1,6 +1,6 @@
 // here are some preset heuristics ready for use with the search
 
-const {getChildren,getNode} = require('./graph.js')
+const {getChildren,getNode} = require('./traverse-graph.js')
 
 const dfs = (node={},stack=[]) => [
   ...getChildren(node),
@@ -13,7 +13,7 @@ const bfs = (node={},stack=[]) => [
 ]
 
 const dijkstra = (node={},stack=[],visited=[],heuristic=()=>Infinity)=> {
-  
+
   const getAdjacent = n => "adjacent" in getChildren(n) ? getChildren(n).adjacent : getChildren(n) //TODO move out...pass in adjnodesj and make async (get from init params)
   const calcDist = (d,j) => heuristic(getNode(d),getNode(j))
   const getDistance = n => Object.values(n)[0].distance

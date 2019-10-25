@@ -1,5 +1,5 @@
 const chai = require('chai')
-const {arrAtoZ} = require('./mocks/ranges')
+const {arrAtoZ} = require('../stubs/ranges')
 const {findAtoZ} = require('../examples')
 const should = chai.should()
 

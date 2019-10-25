@@ -1,4 +1,4 @@
-const bidijkstra = require('./bidijkstra')
+const bidijkstra = require('./algorithms/bidijkstra')
 
 const findAtoZ = async () => {
     const path = await bidijkstra('z','graphBFS','charDist','a','graphBFSreverse','charDistRev')
