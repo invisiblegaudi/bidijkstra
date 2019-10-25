@@ -1,4 +1,5 @@
 const search = require('../algorithms/search')
+const generatorObserver = require('../handlers/generator-observer')
 
 const searchObserver = (processObserver, ...args) => {
 

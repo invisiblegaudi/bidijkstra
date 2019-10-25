@@ -4,7 +4,7 @@
 	"description": "bi-directional dijkstra search",
 	"main": "index.js",
 	  "scripts": {
-    "dev": "nodemon --exec npm start",
+    "dev": "nodemon --exec npm test",
 		"test": "mocha ./tests/*.spec.js",
 		"start": "node examples.js"
 	},
