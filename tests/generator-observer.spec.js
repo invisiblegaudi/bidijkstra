@@ -1,11 +1,11 @@
-const generatorObserver = require('./generator-observer')
-const subscriber = require('./subscriber')
-const generator = require('./generator')
+const generatorObserver = require('./handlers/generator-observer')
+const generator = require('./stubs/generator')
+const nodeJSParentProcess = require('./stubs/process')
 
 describe('generator observer', () => {
 
   it('accepts a generator and observer', () => {
-    generatorObserver(generator, subscriber)
+    generatorObserver(generator, nodeJSParentProcess)
   })
 
 })

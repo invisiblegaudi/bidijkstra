@@ -1,4 +1,3 @@
-const { search } = require('./handlers/run-search')
 const { getChildren } = require('./traverse-graph')
 
 const depthFirst = (node={}, stack=[]) => [
@@ -6,6 +5,4 @@ const depthFirst = (node={}, stack=[]) => [
     ...getChildren(node),
 ]
 
-const depthFirstSearch = (...args) => search(depthFirst, ...args)
-
-module.exports = depthFirstSearch
+module.exports = depthFirst

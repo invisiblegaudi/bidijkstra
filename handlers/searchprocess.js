@@ -3,11 +3,9 @@ const heuristics = require('../heuristics')
 const searchObserver = require('./search-observer')
 const graphs = require('../stubs/graphs')
 
-const searchInit = async (...args) => {
+const searchProcess = async () => {
 
-  const params = process && process.argv ? process.argv.slice(2) : [...args]
-
-  const [target,graph,searchType,heuristic] = params
+  const [target,graph,searchType,heuristic] = process.argv.slice(2)
 
   try {
     await searchObserver(
@@ -18,8 +16,8 @@ const searchInit = async (...args) => {
       heuristic ? heuristics[heuristic] : () => null,
     )
   } catch(e) {
-    throw new Error(e)
+    process.send(e)
   }
 }
 
-searchInit()
+searchProcess()

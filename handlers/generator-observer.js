@@ -1,4 +1,4 @@
-const generatorObserver = (generator, observer) => {
+const generatorObserver = (observer, generator) => {
 
   let state,
       iterator = generator.next()
