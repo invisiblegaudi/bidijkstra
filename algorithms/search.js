@@ -2,13 +2,11 @@ const { getNode } = require('../traverse-graph.js')
 
 const pop = (stack=[]) => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
-const search = function *search (algorithm=()=>[], target='', graph=[], heuristic) {
+const search = function *search (target='', graph=[], algorithm=()=>[], heuristic) {
 
   let found = false,
       stack = graph instanceof Array ? graph.slice() : [],
       visited = []
-
-  console.log('visited',visited)
 
   while(stack.length && !found) {
 
