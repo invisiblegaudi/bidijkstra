@@ -1,11 +1,12 @@
 const chai = require('chai')
 const fuzzy = require('chai-fuzzy')
-const _search = require('../algorithms/search')
+const search = require('../algorithms/search')
 const {dfs,bfs,dijkstra} = require('../search-types')
 const {inputRange,arrAtoZ} = require('../stubs/ranges')
 const {charDist} = require('../heuristics')
 const {graphDFS,graphBFS,graphTypesDepth1} = require('../stubs/graphs')
-const search = (...args) => [..._search(...args)].slice(-1)[0]
+const { generatorResultIteration, generatorResultInitial, generatorResultFinal } = require('../handlers/generator-helpers')
+
 
 const should = chai.should()
 chai.use(fuzzy)
@@ -14,41 +15,46 @@ should.should.have.property('fail')
 describe('Shallow / Algorithmless search', ()=>{
 
   it('default params dont throw error and return array',()=>{
-    search().should.be.like([])
+    generatorResultInitial(search()).should.be.like([])
+    generatorResultFinal(search()).should.be.like([])
   })
 
   it('visits all top nodes in order',()=>{
-    search('j',graphBFS).should.be.like(arrAtoZ.slice(0,7))
-    search('j',graphBFS).shift().should.not.be.like(arrAtoZ.slice(0,3))
-    search('z',graphTypesDepth1).should.be.like('falsenullNaNInfinity01z'.split(''))
+    generatorResultFinal(search('j', graphBFS)).should.be.like(arrAtoZ.slice(0,7));
+
+    [...graphBFS.keys()].slice(1).forEach(
+      i=>generatorResultIteration(i)(search('z', graphBFS))
+        .should.be.like(arrAtoZ.slice(0,i)))
+
+    generatorResultFinal(search('z', graphTypesDepth1)).should.be.like('falsenullNaNInfinity01z'.split(''))
   })
 
   it('returns empty array for bad inputs',()=>{
-    search(inputRange,'z').should.be.like([])
-    inputRange.forEach(i=>search(i).should.be.like([]))
-    inputRange.forEach(i=>search(null,i).should.be.like([]))
-    inputRange.forEach(i=>search(null,null,i).should.be.like([]))
+    generatorResultFinal(search(inputRange,'z')).should.be.like([])
+    inputRange.forEach(i=>generatorResultFinal(search(i)).should.be.like([]))
+    inputRange.forEach(i=>generatorResultFinal(search(null,i)).should.be.like([]))
+    inputRange.forEach(i=>generatorResultFinal(search(null,null,i)).should.be.like([]))
   })
 })
 
 describe('Depth-first search',()=>{
   it('searches all nodes in dfs order',()=>{
-    search('z',graphDFS,dfs).should.be.like(arrAtoZ)
+    generatorResultFinal(search('z',graphDFS,dfs)).should.be.like(arrAtoZ)
   })
 })
 
 describe('Breadth-first search',()=>{
   it('visits all node in dfs order',()=>{
-    search('z',graphBFS,bfs).should.be.like(arrAtoZ)
+    generatorResultFinal(search('z',graphBFS,bfs)).should.be.like(arrAtoZ)
   })
 })
 
 describe('Dijkstra search',()=>{
   it('visits all nodes in alphabetical order in breadth-first ordered graph',()=>{
-    search('z',graphBFS,dijkstra,charDist).should.be.like(arrAtoZ)
+    generatorResultFinal(search('z',graphBFS,dijkstra,charDist)).should.be.like(arrAtoZ)
   })
   it('visits all nodes in alphabetical order in depth-first ordered graph',()=>{
-    search('z',graphDFS,dijkstra,charDist).should.be.like(arrAtoZ)
+    generatorResultFinal(search('z',graphDFS,dijkstra,charDist)).should.be.like(arrAtoZ)
   })
 })
 
