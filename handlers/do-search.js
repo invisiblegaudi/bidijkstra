@@ -1,18 +1,21 @@
 const heuristics = require('../heuristics')
 const searchObserver = require('./search-observer')
 const graphs = require('../stubs/graphs')
+const searches = require('../algorithms/searches')
 
-const doSearch = search => {
+const doSearch = _algorithm => {
 
   const nodeJSParentProcess = process
 
-  const [target, graph, heuristic] = nodeJSParentProcess.argv.slice(2)
+  const [target, graph, algorithm,  heuristic] = nodeJSParentProcess.argv.slice(2)
+
+  const searchAlgorithm = algorithm ? algorithm : _algorithm
 
   searchObserver(
       nodeJSParentProcess,
       target,
       graphs[graph],
-      search,
+      searches[searchAlgorithm],
       heuristics[heuristic],
     )
 

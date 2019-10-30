@@ -1,7 +1,7 @@
-const { search } = require('./algorithms/search')
-const { depthFirst } = require('./algorithms/depth-first')
-const { breadthFirst } = require('./algorithms/breadth-first')
-const { dijkstra } = require('./algorithms/dijkstra')
+const search = require('./search');
+const depthFirst = require('./depth-first')
+const breadthFirst = require('./breadth-first')
+const dijkstra = require('./dijkstra')
 
 const depthFirstSearch = (...args) => search(depthFirst, ...args)
 const breadthFirstSearch = (...args) => search(breadthFirst, ...args)
@@ -12,4 +12,3 @@ module.exports = {
   breadthFirstSearch,
   dijkstraSearch,
 }
-

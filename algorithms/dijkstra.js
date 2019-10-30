@@ -1,4 +1,5 @@
 const { getChildren, getNode } = require('./traverse-graph')
+const search = require('./search')
 
 const dijkstra = (node={}, stack=[], visited=[], heuristic=()=>Infinity) => {
 
@@ -27,5 +28,4 @@ const dijkstraSearch = (...args) => search(dijkstra, ...args)
 module.exports = {
   dijkstra,
   dijkstraSearch,
-
 }

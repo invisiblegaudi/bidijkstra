@@ -1,4 +1,4 @@
-const { getChildren } = require('./traverse-graph')
+const { getChildren } = require('../traverse-graph')
 
 const depthFirst = (node={}, stack=[]) => [
     ...stack,

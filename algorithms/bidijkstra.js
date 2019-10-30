@@ -10,16 +10,16 @@ const bidijkstra = (node1,graph1,heuristic1,node2,graph2,heuristic2) => {
     resolvePromise = resolve
   })
 
-  const search1 = process.fork('./handlers/search-init',[node1,graph1,'dijkstra',heuristic1])
-  const search2 = process.fork('./handlers/search-init',[node2,graph2,'dijkstra',heuristic2])
+  const search1 = process.fork('./processes/do-dijkstra-search',[node1,graph1,'dijkstraSearch',heuristic1])
+  const search2 = process.fork('./processes/do-dijkstra-search',[node2,graph2,'dijkstraSearch',heuristic2])
 
     // TODO:
     // const start = () => {
-    //   const search1.send('start',[node1,graph1,'dijkstra',heuristic1])
+  //   const search1.send('start',[node1,graph1,'dijkstra',heuristic1])
     //   const search2.send('start',[node2,graph2,'dijkstra',heuristic2])
     // }
 
-    const finish = () => {
+  const finish = () => {
 
     search1.kill()
     search2.kill()
