@@ -1,5 +1,5 @@
 const generatorObserver = (observer, generator) => {
-
+  console.log(!observer.send,'<<<<@::@')
   let state,
       iterator = generator.next()
 

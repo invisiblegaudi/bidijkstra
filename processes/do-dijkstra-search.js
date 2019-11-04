@@ -1,5 +1,4 @@
 const doSearch  = require('../handlers/do-search')
-const dijkstra = require('../algorithms/searches')
+const { dijkstraSearch } = require('../algorithms/searches')
 
-doSearch(dijkstra)
-
+doSearch(dijkstraSearch)

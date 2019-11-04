@@ -1,24 +1,16 @@
 const heuristics = require('../heuristics')
 const searchObserver = require('./search-observer')
-const graphs = require('../stubs/graphs')
-const searches = require('../algorithms/searches')
 
-const doSearch = _algorithm => {
+const runAsProcess = routine => {
 
-  const nodeJSParentProcess = process
+  if(process && typeof process.send === 'function') {
+    throw new Error('not a valid process')
+  }
 
-  const [target, graph, algorithm,  heuristic] = nodeJSParentProcess.argv.slice(2)
+  const [...args] = process.argv.slice(2)
 
-  const searchAlgorithm = algorithm ? algorithm : _algorithm
+  routine(process, ...args)
 
-  searchObserver(
-      nodeJSParentProcess,
-      target,
-      graphs[graph],
-      searches[searchAlgorithm],
-      heuristics[heuristic],
-    )
+}
 
- }
-
-module.exports = doSearch
+module.exports = runAsProcess(searchObserver)

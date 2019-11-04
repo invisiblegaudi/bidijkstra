@@ -1,6 +1,6 @@
 // here are some preset heuristics ready for use with the search
 
-const {getChildren,getNode} = require('./algorithms/traverse-graph.js')
+const {getChildren,getNode} = require('./algorithms/graph-json')
 
 const dfs = (node={},stack=[]) => [
   ...getChildren(node),

@@ -1,5 +1,5 @@
 const { search } = require('./handlers/run-search')
-const { getChildren } = require('./traverse-graph')
+const { getChildren } = require('./graph-json')
 
 const breadthFirst = (node={}, stack=[]) => [
     ...stack,

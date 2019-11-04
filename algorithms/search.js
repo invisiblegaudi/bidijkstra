@@ -1,4 +1,4 @@
-const { getNode } = require('./traverse-graph.js')
+const { getNode } = require('./graph-json')
 
 const pop = (stack=[]) => Object.assign({}, { next:stack.slice(0,1)[0],stack:stack.slice(1) })
 
