@@ -1,14 +1,14 @@
 {
 	"name": "bidijkstra",
-	"version": "0.6.2",
+	"version": "0.6.3",
 	"description": "bi-directional dijkstra search",
 	"main": "index.js",
-  "scripts": {
-    "lint": "eslint  **/*.js --ignore-path .gitignore",
-    "pretest": "npm install",
-    "preversion": "npm run test",
-    "version": "",
-    "postversion": "git push && git push --tags && npm publish",
+	"scripts": {
+		"lint": "eslint  **/*.js --ignore-path .gitignore",
+		"pretest": "npm install",
+		"preversion": "npm run test",
+		"version": "",
+		"postversion": "git push && git push --tags && npm publish",
 		"test": "npm run lint && mocha ./tests/*.spec.js",
 		"start": "node examples.js"
 	},
@@ -26,5 +26,8 @@
 		"type": "git",
 		"url": "https://github.com/invisiblegaudi/bidijkstra"
 	},
-  "eslintIgnore": ["./node_modules/*"]
+	"eslintIgnore": [
+		"./node_modules/*"
+	],
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
