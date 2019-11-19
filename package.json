@@ -12,7 +12,7 @@
 		"test": "npm run lint && mocha ./tests/*.spec.js",
 		"start": "node examples.js"
 	},
-	"Author": "info@oak-means.com",
+	"Author": "john@invisiblearchitects.com",
 	"license": "MIT",
 	"devDependencies": {
 		"chai": "^4.2.0",
@@ -28,5 +28,6 @@
 	},
 	"eslintIgnore": [
 		"./node_modules/*"
-	]
+	],
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
