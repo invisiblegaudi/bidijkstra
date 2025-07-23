@@ -1,3 +1,3 @@
-import bidijkstra from './bidijkstra';
+const bidijkstra = require('./bidijkstra');
 
-export default bidijkstra;
+module.exports = bidijkstra;
