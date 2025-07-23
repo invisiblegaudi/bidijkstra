@@ -2,7 +2,7 @@
 	"name": "bidijkstra",
 	"version": "0.6.3",
 	"description": "bi-directional dijkstra search",
-	"main": "index.ts",
+	"main": "index.js",
 	"scripts": {
 		"lint": "eslint  **/*.js --ignore-path .gitignore",
 		"pretest": "npm install",

@@ -1,6 +1,6 @@
 // here are some preset heuristics ready for use with the search
 
-const {getChildren,getNode} = require('./graph.js')
+const {getChildren,getNode} = require('./graph.ts')
 
 const dfs = (node={},stack=[]) => [
   ...getChildren(node),
