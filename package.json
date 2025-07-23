@@ -10,8 +10,8 @@
 		"version": "",
 		"postversion": "git push && git push --tags && npm publish",
 		"test": "npm run lint && mocha ./tests/*.spec.js",
-		"start": "npx tsx examples.js",
-		"dev": "npx tsx --watch examples.js"
+		"start": "npx tsx examples.ts",
+		"dev": "npx tsx --watch examples.ts"
 	},
 	"Author": "john@invisiblearchitects.com",
 	"license": "MIT",
