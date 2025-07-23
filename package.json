@@ -2,7 +2,7 @@
 	"name": "bidijkstra",
 	"version": "0.6.3",
 	"description": "bi-directional dijkstra search",
-	"main": "index.js",
+	"main": "index.ts",
 	"scripts": {
 		"lint": "eslint  **/*.js --ignore-path .gitignore",
 		"pretest": "npm install",
@@ -10,7 +10,8 @@
 		"version": "",
 		"postversion": "git push && git push --tags && npm publish",
 		"test": "npm run lint && mocha ./tests/*.spec.js",
-		"start": "node examples.js"
+		"start": "npx tsx examples.js",
+		"dev": "npx tsx --watch examples.js"
 	},
 	"Author": "john@invisiblearchitects.com",
 	"license": "MIT",
@@ -20,7 +21,10 @@
 		"chai-fuzzy": "^1.6.1",
 		"eslint": "^5.16.0",
 		"mocha": "^6.2.1",
-		"nodemon": "^1.19.4"
+		"nodemon": "^1.19.4",
+		"tsx": "^4.0.0",
+		"typescript": "^5.0.0",
+		"@types/node": "^20.0.0"
 	},
 	"repository": {
 		"type": "git",
