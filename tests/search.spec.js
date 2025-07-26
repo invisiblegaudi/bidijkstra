@@ -1,10 +1,10 @@
 const chai = require('chai');
 const fuzzy = require('chai-fuzzy');
-const {getPath} = require('../coroutines/search');
-const {dfs, bfs, dijkstra} = require('../algorithm');
-const {inputRange, arrAtoZ} = require('./mocks/ranges');
-const {charDist} = require('../heuristic');
-const {graphDFS, graphBFS, graphTypesDepth1} = require('./mocks/graphs');
+const { getPath } = require('../coroutines/search');
+const { dfs, bfs, dijkstra } = require('../algorithm');
+const { inputRange, arrAtoZ } = require('./mocks/ranges');
+const { charDist } = require('../heuristic');
+const { graphDFS, graphBFS, graphTypesDepth1 } = require('./mocks/graphs');
 
 const should = chai.should();
 chai.use(fuzzy);
@@ -24,9 +24,9 @@ describe('Shallow / Algorithmless search', () => {
 
   it('returns empty array for bad inputs', () => {
     getPath(inputRange, 'z').should.be.like([]);
-    inputRange.forEach(i => getPath(i).should.be.like([]));
-    inputRange.forEach(i => getPath(null, i).should.be.like([]));
-    inputRange.forEach(i => getPath(null, null, i).should.be.like([]));
+    inputRange.forEach((i) => getPath(i).should.be.like([]));
+    inputRange.forEach((i) => getPath(null, i).should.be.like([]));
+    inputRange.forEach((i) => getPath(null, null, i).should.be.like([]));
   });
 
   it('handles empty target string', () => {

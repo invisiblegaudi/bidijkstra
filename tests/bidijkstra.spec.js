@@ -1,6 +1,6 @@
 const chai = require('chai');
-const {arrAtoZ} = require('./mocks/ranges');
-const {findAtoZ} = require('../examples');
+const { arrAtoZ } = require('./mocks/ranges');
+const { findAtoZ } = require('../examples');
 const should = chai.should();
 
 should.should.have.property('fail');
