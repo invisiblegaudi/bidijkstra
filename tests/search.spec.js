@@ -1,7 +1,7 @@
 const chai = require('chai');
 const fuzzy = require('chai-fuzzy');
-const { getPath } = require('../coroutines/search');
-const { dfs, bfs, dijkstra } = require('../algorithm');
+const { getPath } = require('../coroutines/search.ts');
+const { dfs, bfs, dijkstra } = require('../algorithm.ts');
 const { inputRange, arrAtoZ } = require('./mocks/ranges');
 const { charDist } = require('../heuristic');
 const { graphDFS, graphBFS, graphTypesDepth1 } = require('./mocks/graphs');

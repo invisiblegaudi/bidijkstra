@@ -1,6 +1,6 @@
 const chai = require('chai');
 const fuzzy = require('chai-fuzzy');
-const { dfs, bfs, dijkstra } = require('../algorithm.js');
+const { dfs, bfs, dijkstra } = require('../algorithm.ts');
 const { inputRange } = require('./mocks/ranges');
 const { charDist } = require('../heuristic');
 
