@@ -2,17 +2,15 @@ const chai = require('chai');
 const fuzzy = require('chai-fuzzy');
 const { dfs, bfs, dijkstra } = require('../algorithm.js');
 const { inputRange } = require('./mocks/ranges');
-const { graphDFS, graphBFS } = require('./mocks/graphs');
 const { charDist } = require('../heuristic');
 
-const should = chai.should();
 chai.use(fuzzy);
 
 describe('Algorithm functions', () => {
-  
+
   describe('Depth first search', () => {
     it('returns empty array for bad inputs', () => {
-      inputRange.forEach((i) => dfs(i).should.be.like([]));
+      inputRange.forEach(i => dfs(i).should.be.like([]));
     });
 
     it('returns empty array for empty node', () => {
@@ -35,7 +33,7 @@ describe('Algorithm functions', () => {
 
   describe('Breadth first search', () => {
     it('returns empty array for bad inputs', () => {
-      inputRange.forEach((i) => bfs(i).should.be.like([]));
+      inputRange.forEach(i => bfs(i).should.be.like([]));
     });
 
     it('returns empty array for empty node', () => {
@@ -61,7 +59,7 @@ describe('Algorithm functions', () => {
 
   describe('Dijkstra search', () => {
     it('returns empty array for bad inputs', () => {
-      inputRange.forEach((i) => dijkstra(i).should.be.like([]));
+      inputRange.forEach(i => dijkstra(i).should.be.like([]));
     });
 
     it('handles node without heuristic function', () => {

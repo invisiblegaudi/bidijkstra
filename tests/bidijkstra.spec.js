@@ -17,7 +17,7 @@ describe('Bi-directional Dijkstra search', () => {
         const path = await findAtoZ();
         const endTime = Date.now();
         const duration = endTime - startTime;
-        
+
         path.should.be.an('array');
         duration.should.be.lessThan(5000); // Should complete within 5 seconds
     });

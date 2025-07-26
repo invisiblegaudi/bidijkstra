@@ -24,9 +24,9 @@ describe('Shallow / Algorithmless search', () => {
 
   it('returns empty array for bad inputs', () => {
     getPath(inputRange, 'z').should.be.like([]);
-    inputRange.forEach((i) => getPath(i).should.be.like([]));
-    inputRange.forEach((i) => getPath(null, i).should.be.like([]));
-    inputRange.forEach((i) => getPath(null, null, i).should.be.like([]));
+    inputRange.forEach(i => getPath(i).should.be.like([]));
+    inputRange.forEach(i => getPath(null, i).should.be.like([]));
+    inputRange.forEach(i => getPath(null, null, i).should.be.like([]));
   });
 
   it('handles empty target string', () => {
@@ -114,7 +114,7 @@ describe('Dijkstra search', () => {
   it('visits all nodes in alphabetical order in breadth-first ordered graph', () => {
     getPath('z', graphBFS, dijkstra, charDist).should.be.like(arrAtoZ);
   });
-  
+
   it('visits all nodes in alphabetical order in depth-first ordered graph', () => {
     getPath('z', graphDFS, dijkstra, charDist).should.be.like(arrAtoZ);
   });
