@@ -92,6 +92,10 @@ typings/
 # TypeScript
 dist/
 *.tsbuildinfo
+*.js
+*.js.map
+!*.config.js
+!*.mock.json.js
 
 # Ai Code Assistants
 .aider*
