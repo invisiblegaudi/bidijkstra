@@ -1,4 +1,4 @@
-const algorithms = require('./algorithm.js')
+const algorithms = require('./algorithm.ts')
 const heuristics = require('./heuristic.js')
 const bfs = require('./bfs.mock.json.js')
 const bfs_rev = require('./bfs_rev.mock.json.js')

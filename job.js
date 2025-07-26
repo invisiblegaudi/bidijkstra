@@ -1,5 +1,5 @@
 
-const search = require('./search.js')
+const search = require('./search.ts')
 
 const searchJob = (subscriber=()=>({send:()=>null}),...args) => {
 
