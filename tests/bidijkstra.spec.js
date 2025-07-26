@@ -5,21 +5,29 @@ const should = chai.should();
 
 should.should.have.property('fail');
 
-async function testPathContinuity() {
+/**
+ * Test path continuity
+ * @returns {Promise<void>} Promise that resolves when test completes
+ */
+const testPathContinuity = async () => {
     const path = await findAtoZ();
     path.should.be.an('array');
     path.length.should.be.greaterThan(1);
     // Path should represent a valid sequence from a to z
     path[0].should.be.oneOf(['a', 'z']);
     path[path.length - 1].should.be.oneOf(['a', 'z']);
-}
+};
 
-async function testConvergence() {
+/**
+ * Test convergence behavior
+ * @returns {Promise<void>} Promise that resolves when test completes
+ */
+const testConvergence = async () => {
     const path = await findAtoZ();
     // Should have found a meeting point between forward and backward search
     path.should.be.an('array');
     path.length.should.equal(arrAtoZ.length);
-}
+};
 
 describe('Bi-directional Dijkstra search', () => {
 

@@ -6,20 +6,31 @@ const { charDist } = require('../heuristic');
 
 chai.use(fuzzy);
 
-function testDFSBadInputs() {
+/**
+ * Test DFS with bad inputs
+ */
+const testDFSBadInputs = () => {
   inputRange.forEach(i => dfs(i).should.be.like([]));
-}
+};
 
-function testBFSBadInputs() {
+/**
+ * Test BFS with bad inputs
+ */
+const testBFSBadInputs = () => {
   inputRange.forEach(i => bfs(i).should.be.like([]));
-}
+};
 
-function testDijkstraBadInputs() {
+/**
+ * Test Dijkstra with bad inputs
+ */
+const testDijkstraBadInputs = () => {
   inputRange.forEach(i => dijkstra(i).should.be.like([]));
-}
+};
 
-describe('Algorithm functions', () => {
-
+/**
+ * Test DFS functionality
+ */
+const testDFS = () => {
   describe('Depth first search', () => {
     it('returns empty array for bad inputs', () => {
       testDFSBadInputs();
@@ -42,7 +53,12 @@ describe('Algorithm functions', () => {
       result.should.include.members(stack);
     });
   });
+};
 
+/**
+ * Test BFS functionality
+ */
+const testBFS = () => {
   describe('Breadth first search', () => {
     it('returns empty array for bad inputs', () => {
       testBFSBadInputs();
@@ -68,7 +84,12 @@ describe('Algorithm functions', () => {
       dfsResult.should.be.an('array');
     });
   });
+};
 
+/**
+ * Test Dijkstra functionality
+ */
+const testDijkstra = () => {
   describe('Dijkstra search', () => {
     it('returns empty array for bad inputs', () => {
       testDijkstraBadInputs();
@@ -100,4 +121,10 @@ describe('Algorithm functions', () => {
       result.should.be.an('array');
     });
   });
+};
+
+describe('Algorithm functions', () => {
+  testDFS();
+  testBFS();
+  testDijkstra();
 });
