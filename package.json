@@ -4,12 +4,12 @@
 	"description": "bi-directional dijkstra search",
 	"main": "index.js",
 	"scripts": {
-		"lint": "eslint  **/*.js --ignore-path .gitignore",
+		"lint": "eslint  **/*.{js,ts} --ignore-path .gitignore",
 		"pretest": "npm install",
 		"preversion": "npm run test",
 		"version": "",
 		"postversion": "git push && git push --tags && npm publish",
-		"test": "npm run lint && mocha ./tests/*.spec.js",
+		"test": "npm run lint && mocha --require tsx/cjs ./tests/*.spec.ts",
 		"start": "npx tsx examples.ts",
 		"dev": "npx tsx --watch examples.ts"
 	},
