@@ -8,6 +8,7 @@ chai.use(fuzzy);
 
 /**
  * Test DFS with bad inputs
+ * @returns {void}
  */
 const testDFSBadInputs = () => {
   inputRange.forEach(i => dfs(i).should.be.like([]));
@@ -15,6 +16,7 @@ const testDFSBadInputs = () => {
 
 /**
  * Test BFS with bad inputs
+ * @returns {void}
  */
 const testBFSBadInputs = () => {
   inputRange.forEach(i => bfs(i).should.be.like([]));
@@ -22,6 +24,7 @@ const testBFSBadInputs = () => {
 
 /**
  * Test Dijkstra with bad inputs
+ * @returns {void}
  */
 const testDijkstraBadInputs = () => {
   inputRange.forEach(i => dijkstra(i).should.be.like([]));
@@ -29,6 +32,7 @@ const testDijkstraBadInputs = () => {
 
 /**
  * Test DFS functionality
+ * @returns {void}
  */
 const testDFS = () => {
   describe('Depth first search', () => {
@@ -57,6 +61,7 @@ const testDFS = () => {
 
 /**
  * Test BFS functionality
+ * @returns {void}
  */
 const testBFS = () => {
   describe('Breadth first search', () => {
@@ -88,6 +93,7 @@ const testBFS = () => {
 
 /**
  * Test Dijkstra functionality
+ * @returns {void}
  */
 const testDijkstra = () => {
   describe('Dijkstra search', () => {
