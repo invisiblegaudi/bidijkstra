@@ -6,11 +6,23 @@ const { charDist } = require('../heuristic');
 
 chai.use(fuzzy);
 
+function testDFSBadInputs() {
+  inputRange.forEach(i => dfs(i).should.be.like([]));
+}
+
+function testBFSBadInputs() {
+  inputRange.forEach(i => bfs(i).should.be.like([]));
+}
+
+function testDijkstraBadInputs() {
+  inputRange.forEach(i => dijkstra(i).should.be.like([]));
+}
+
 describe('Algorithm functions', () => {
 
   describe('Depth first search', () => {
     it('returns empty array for bad inputs', () => {
-      inputRange.forEach(i => dfs(i).should.be.like([]));
+      testDFSBadInputs();
     });
 
     it('returns empty array for empty node', () => {
@@ -33,7 +45,7 @@ describe('Algorithm functions', () => {
 
   describe('Breadth first search', () => {
     it('returns empty array for bad inputs', () => {
-      inputRange.forEach(i => bfs(i).should.be.like([]));
+      testBFSBadInputs();
     });
 
     it('returns empty array for empty node', () => {
@@ -59,7 +71,7 @@ describe('Algorithm functions', () => {
 
   describe('Dijkstra search', () => {
     it('returns empty array for bad inputs', () => {
-      inputRange.forEach(i => dijkstra(i).should.be.like([]));
+      testDijkstraBadInputs();
     });
 
     it('handles node without heuristic function', () => {

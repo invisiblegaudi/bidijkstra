@@ -5,6 +5,22 @@ const should = chai.should();
 
 should.should.have.property('fail');
 
+async function testPathContinuity() {
+    const path = await findAtoZ();
+    path.should.be.an('array');
+    path.length.should.be.greaterThan(1);
+    // Path should represent a valid sequence from a to z
+    path[0].should.be.oneOf(['a', 'z']);
+    path[path.length - 1].should.be.oneOf(['a', 'z']);
+}
+
+async function testConvergence() {
+    const path = await findAtoZ();
+    // Should have found a meeting point between forward and backward search
+    path.should.be.an('array');
+    path.length.should.equal(arrAtoZ.length);
+}
+
 describe('Bi-directional Dijkstra search', () => {
 
     it('returns a path equal to the alphabet', async () => {
@@ -35,19 +51,11 @@ describe('Bi-directional Dijkstra search', () => {
     });
 
     it('path is continuous', async () => {
-        const path = await findAtoZ();
-        path.should.be.an('array');
-        path.length.should.be.greaterThan(1);
-        // Path should represent a valid sequence from a to z
-        path[0].should.be.oneOf(['a', 'z']);
-        path[path.length - 1].should.be.oneOf(['a', 'z']);
+        await testPathContinuity();
     });
 
     it('handles convergence correctly', async () => {
-        const path = await findAtoZ();
-        // Should have found a meeting point between forward and backward search
-        path.should.be.an('array');
-        path.length.should.equal(arrAtoZ.length);
+        await testConvergence();
     });
 
     it('maintains alphabetical order', async () => {
