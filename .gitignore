@@ -90,6 +90,13 @@ typings/
 # End of https://www.gitignore.io/api/node
 .aider*
 
+# Ignore all dot files
+.*
+
+# But include these specific dot files
+!.gitignore
+!.eslintrc.js
+
 # TypeScript
 dist/
 *.tsbuildinfo

@@ -1,52 +1,48 @@
-const chai = require('chai')
-const fuzzy = require('chai-fuzzy')
+const { test, describe } = require('node:test')
+const assert = require('node:assert')
 const {getPath} = require('../coroutines/search')
 const {dfs,bfs,dijkstra} = require('../algorithm')
 const {inputRange,arrAtoZ} = require('./mocks/ranges')
 const {charDist} = require('../heuristic')
 const {graphDFS,graphBFS,graphTypesDepth1} = require('./mocks/graphs')
 
-const should = chai.should()
-chai.use(fuzzy)
-should.should.have.property('fail')
-
 describe('Shallow / Algorithmless search', ()=>{
 
-  it('default params dont throw error and return array',()=>{
-    getPath().should.be.like([])
+  test('default params dont throw error and return array',()=>{
+    assert.deepStrictEqual(getPath(), [])
   })
 
-  it('visits all top nodes in order',()=>{
-    getPath('j',graphBFS).should.be.like(arrAtoZ.slice(0,7))
-    getPath('j',graphBFS).should.not.be.like(arrAtoZ.slice(0,3))
-    getPath('z',graphTypesDepth1).should.be.like('falsenullNaNInfinity01z'.split(''))
+  test('visits all top nodes in order',()=>{
+    assert.deepStrictEqual(getPath('j',graphBFS), arrAtoZ.slice(0,7))
+    assert.notDeepStrictEqual(getPath('j',graphBFS), arrAtoZ.slice(0,3))
+    assert.deepStrictEqual(getPath('z',graphTypesDepth1), 'falsenullNaNInfinity01z'.split(''))
   })
 
-  it('returns empty array for bad inputs',()=>{
-    getPath(inputRange,'z').should.be.like([])
-    inputRange.forEach(i=>getPath(i).should.be.like([]))
-    inputRange.forEach(i=>getPath(null,i).should.be.like([]))
-    inputRange.forEach(i=>getPath(null,null,i).should.be.like([]))
+  test('returns empty array for bad inputs',()=>{
+    assert.deepStrictEqual(getPath(inputRange,'z'), [])
+    inputRange.forEach(i=>assert.deepStrictEqual(getPath(i), []))
+    inputRange.forEach(i=>assert.deepStrictEqual(getPath(null,i), []))
+    inputRange.forEach(i=>assert.deepStrictEqual(getPath(null,null,i), []))
   })
 })
 
 describe('Depth-first search',()=>{
-  it('searches all nodes in dfs order',()=>{
-    getPath('z',graphDFS,dfs).should.be.like(arrAtoZ)
+  test('searches all nodes in dfs order',()=>{
+    assert.deepStrictEqual(getPath('z',graphDFS,dfs), arrAtoZ)
   })
 })
 
 describe('Breadth-first search',()=>{
-  it('visits all node in dfs order',()=>{
-    getPath('z',graphBFS,bfs).should.be.like(arrAtoZ)
+  test('visits all node in dfs order',()=>{
+    assert.deepStrictEqual(getPath('z',graphBFS,bfs), arrAtoZ)
   })
 })
 
 describe('Dijkstra search',()=>{
-  it('visits all nodes in alphabetical order in breadth-first ordered graph',()=>{
-    getPath('z',graphBFS,dijkstra,charDist).should.be.like(arrAtoZ)
+  test('visits all nodes in alphabetical order in breadth-first ordered graph',()=>{
+    assert.deepStrictEqual(getPath('z',graphBFS,dijkstra,charDist), arrAtoZ)
   })
-  it('visits all nodes in alphabetical order in depth-first ordered graph',()=>{
-    getPath('z',graphDFS,dijkstra,charDist).should.be.like(arrAtoZ)
+  test('visits all nodes in alphabetical order in depth-first ordered graph',()=>{
+    assert.deepStrictEqual(getPath('z',graphDFS,dijkstra,charDist), arrAtoZ)
   })
 })
