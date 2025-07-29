@@ -4,12 +4,14 @@
 	"description": "bi-directional dijkstra search",
 	"main": "index.js",
 	"scripts": {
-		"lint": "eslint  **/*.js --ignore-path .gitignore",
+		"build": "tsc",
+		"lint": "eslint **/*.js **/*.ts --ignore-path .gitignore",
 		"pretest": "npm install",
 		"preversion": "npm run test",
 		"version": "",
 		"postversion": "git push && git push --tags && npm publish",
 		"test": "npm run lint && mocha ./tests/*.spec.js",
+		"test:ts": "npm run lint && mocha -r ts-node/register ./tests/*.spec.ts",
 		"start": "node examples.js"
 	},
 	"Author": "john@invisiblearchitects.com",
@@ -20,7 +22,12 @@
 		"chai-fuzzy": "^1.6.1",
 		"eslint": "^5.16.0",
 		"mocha": "^6.2.1",
-		"nodemon": "^1.19.4"
+		"nodemon": "^1.19.4",
+		"typescript": "^4.0.0",
+		"@types/node": "^14.0.0",
+		"@types/mocha": "^8.0.0",
+		"@types/chai": "^4.0.0",
+		"ts-node": "^9.0.0"
 	},
 	"repository": {
 		"type": "git",
