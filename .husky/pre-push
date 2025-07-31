@@ -5,5 +5,53 @@
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$BRANCH" = "main" ]; then
   echo "Running tests before pushing to main..."
-  npm test
+  
+  # Get list of changed JavaScript files since last push
+  CHANGED_JS_FILES=$(git diff --name-only origin/main...HEAD | grep -E '\.(js)$')
+  
+  if [ -n "$CHANGED_JS_FILES" ]; then
+    echo "Changed JavaScript files detected:"
+    echo "$CHANGED_JS_FILES"
+    
+    # Run specific tests based on changed files
+    TEST_FILES=""
+    RUN_ALL_TESTS=false
+    
+    for file in $CHANGED_JS_FILES; do
+      case "$file" in
+        "algorithm.js")
+          TEST_FILES="$TEST_FILES tests/algorithm.spec.js"
+          ;;
+        "search.js"|"coroutines/search.js")
+          TEST_FILES="$TEST_FILES tests/search.spec.js"
+          ;;
+        "bidijkstra.js"|"examples.js")
+          TEST_FILES="$TEST_FILES tests/bidijkstra.spec.js"
+          ;;
+        "graph.js"|"heuristic.js"|"job.js"|"searchprocess.js")
+          # Core dependencies changed, run all tests
+          echo "Core file $file changed, running all tests..."
+          RUN_ALL_TESTS=true
+          break
+          ;;
+        *)
+          # For other JS files, run all tests as fallback
+          echo "Unknown file $file changed, running all tests..."
+          RUN_ALL_TESTS=true
+          break
+          ;;
+      esac
+    done
+    
+    if [ "$RUN_ALL_TESTS" = true ]; then
+      npm test
+    elif [ -n "$TEST_FILES" ]; then
+      echo "Running specific tests: $TEST_FILES"
+      npx mocha $TEST_FILES
+    fi
+  else
+    echo "No JavaScript files changed, skipping tests."
+  fi
+else
+  echo "Not pushing to main branch, skipping tests."
 fi

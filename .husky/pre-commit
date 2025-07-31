@@ -1,1 +1,43 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged first
 npx lint-staged
+
+# Get list of staged JavaScript files
+STAGED_JS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js)$')
+
+if [ -n "$STAGED_JS_FILES" ]; then
+  echo "Running tests for staged JavaScript files..."
+  
+  # Run specific tests based on changed files
+  for file in $STAGED_JS_FILES; do
+    case "$file" in
+      "algorithm.js")
+        echo "Running algorithm tests..."
+        npx mocha tests/algorithm.spec.js
+        ;;
+      "search.js"|"coroutines/search.js")
+        echo "Running search tests..."
+        npx mocha tests/search.spec.js
+        ;;
+      "bidijkstra.js"|"examples.js")
+        echo "Running bidijkstra tests..."
+        npx mocha tests/bidijkstra.spec.js
+        ;;
+      "graph.js"|"heuristic.js"|"job.js")
+        echo "Core dependency changed, running all tests..."
+        npm test
+        break
+        ;;
+      *)
+        # For other JS files, run all tests as fallback
+        echo "Running all tests for $file..."
+        npm test
+        break
+        ;;
+    esac
+  done
+else
+  echo "No JavaScript files staged for commit."
+fi
