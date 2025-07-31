@@ -15,10 +15,14 @@
 	"Author": "john@invisiblearchitects.com",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/chai": "^4.0.0",
+		"@types/mocha": "^8.0.0",
+		"@types/node": "^14.0.0",
 		"chai": "^4.2.0",
 		"chai-arrays": "^2.0.0",
 		"chai-fuzzy": "^1.6.1",
 		"eslint": "^5.16.0",
+		"husky": "^9.1.7",
 		"mocha": "^6.2.1",
 		"nodemon": "^1.19.4"
 	},
@@ -29,5 +33,7 @@
 	"eslintIgnore": [
 		"./node_modules/*"
 	],
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	}
 }
