@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"eslint": "^5.16.0",
 		"husky": "^8.0.3",
-		"nodemon": "^1.19.4"
+		"nodemon": "^3.1.10"
 	},
 	"repository": {
 		"type": "git",
@@ -35,5 +35,7 @@
 			"post-checkout": "if [ -f package.json ] && git diff HEAD@{1} HEAD --name-only | grep -q package.json; then npm install; fi"
 		}
 	},
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	}
 }
