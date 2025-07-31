@@ -31,7 +31,8 @@
 			"pre-commit": "npm run lint",
 			"pre-push": "npm run test",
 			"post-merge": "npm install && npm run test",
-			"post-rebase": "npm run test"
+			"post-rebase": "npm run test",
+			"post-checkout": "if [ -f package.json ] && git diff HEAD@{1} HEAD --name-only | grep -q package.json; then npm install; fi"
 		}
 	},
   "publishConfig": { "registry": "https://npm.pkg.github.com/" }
