@@ -16,6 +16,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"eslint": "^5.16.0",
+		"husky": "^8.0.3",
 		"nodemon": "^1.19.4"
 	},
 	"repository": {
@@ -25,5 +26,13 @@
 	"eslintIgnore": [
 		"./node_modules/*"
 	],
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint",
+			"pre-push": "npm run test",
+			"post-merge": "npm install && npm run test",
+			"post-rebase": "npm run test"
+		}
+	},
   "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
