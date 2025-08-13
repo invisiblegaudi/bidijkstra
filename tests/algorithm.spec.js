@@ -3,6 +3,7 @@ const assert = require('node:assert')
 const {dfs, bfs, dijkstra} = require('../algorithm.js')
 const {inputRange, singleNodeGraph, disconnectedGraph, cyclicGraph, linearGraph, denseGraph} = require('./mocks/ranges')
 const {charDist} = require('../heuristic')
+const {getNode, getChildren} = require('../graph.js')
 
 describe('Depth first search',()=>{
   test('returns empty array for bad inputs',()=>{
@@ -41,11 +42,15 @@ describe('Breadth first search', () => {
   })
   
   test('handles single node graph', () => {
-    assert.deepStrictEqual(bfs({a: []}), [])
+    const node = {a: []}
+    const children = getChildren(node)
+    assert.deepStrictEqual(bfs(node), children)
   })
   
   test('handles cyclic graphs without infinite loops', () => {
-    const result = bfs({a: [{b: [{c: [{a: []}]}]}]})
+    const cyclicNode = {a: [{b: [{c: [{a: []}]}]}]}
+    const result = bfs(cyclicNode)
+    const nodeKey = getNode(cyclicNode)
     assert.ok(Array.isArray(result))
     assert.ok(result.length < 10) // Should not loop infinitely
   })
@@ -77,7 +82,9 @@ describe('Dijkstra search', () => {
   
   test('works with different heuristic functions', () => {
     const constantHeuristic = () => 1
-    const result = dijkstra({a: [{b: []}]}, [], [], constantHeuristic)
+    const testNode = {a: [{b: []}]}
+    const result = dijkstra(testNode, [], [], constantHeuristic)
+    const nodeKey = getNode(testNode)
     assert.ok(Array.isArray(result))
   })
   
