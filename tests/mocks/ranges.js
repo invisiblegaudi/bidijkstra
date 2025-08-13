@@ -13,7 +13,7 @@ const cyclicGraph = [
   {a: [{b: [{c: [{a: []}]}]}]} // creates a cycle a->b->c->a
 ]
 const linearGraph = [
-  {a: [{b: [{c: [{d: [{e: []}]}]}]}]
+  {a: [{b: [{c: [{d: [{e: []}]}]}]}]}
 ]
 const denseGraph = [
   {a: [{b: []}, {c: []}, {d: []}]},
