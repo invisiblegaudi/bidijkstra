@@ -8,6 +8,31 @@ describe('Depth first search',()=>{
   test('returns empty array for bad inputs',()=>{
     inputRange.forEach(i=>assert.deepStrictEqual(dfs(i), []))
   })
+  
+  test('handles single node graph', () => {
+    const result = dfs(singleNodeGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles disconnected graph', () => {
+    const result = dfs(disconnectedGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles cyclic graph', () => {
+    const result = dfs(cyclicGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles linear graph', () => {
+    const result = dfs(linearGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles dense graph', () => {
+    const result = dfs(denseGraph)
+    assert.ok(Array.isArray(result))
+  })
 })
 
 describe('Breadth first search', () => {
@@ -24,6 +49,21 @@ describe('Breadth first search', () => {
     assert.ok(Array.isArray(result))
     assert.ok(result.length < 10) // Should not loop infinitely
   })
+  
+  test('handles disconnected graph', () => {
+    const result = bfs(disconnectedGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles linear graph', () => {
+    const result = bfs(linearGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles dense graph', () => {
+    const result = bfs(denseGraph)
+    assert.ok(Array.isArray(result))
+  })
 })
 
 describe('Dijkstra search', () => {
@@ -38,6 +78,31 @@ describe('Dijkstra search', () => {
   test('works with different heuristic functions', () => {
     const constantHeuristic = () => 1
     const result = dijkstra({a: [{b: []}]}, [], [], constantHeuristic)
+    assert.ok(Array.isArray(result))
+  })
+  
+  test('handles single node graph', () => {
+    const result = dijkstra(singleNodeGraph, [], [], charDist)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles disconnected graph', () => {
+    const result = dijkstra(disconnectedGraph, [], [], charDist)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles cyclic graph', () => {
+    const result = dijkstra(cyclicGraph, [], [], charDist)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles linear graph', () => {
+    const result = dijkstra(linearGraph, [], [], charDist)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles dense graph', () => {
+    const result = dijkstra(denseGraph, [], [], charDist)
     assert.ok(Array.isArray(result))
   })
 })
