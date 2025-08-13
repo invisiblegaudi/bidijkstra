@@ -113,14 +113,12 @@ describe('Algorithm comparison tests', () => {
 })
 
 describe('Performance tests', () => {
-  test('handles large graph without timeout', function() {
-    this.timeout(5000) // 5 second timeout
+  test('handles large graph without timeout', { timeout: 5000 }, () => {
     const result = getPath('z', largeGraph, bfs)
     assert.ok(Array.isArray(result))
   })
   
-  test('algorithms complete in reasonable time', function() {
-    this.timeout(1000) // 1 second timeout
+  test('algorithms complete in reasonable time', { timeout: 1000 }, () => {
     const algorithms = [dfs, bfs, dijkstra]
     
     algorithms.forEach(algo => {
