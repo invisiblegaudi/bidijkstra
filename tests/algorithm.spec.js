@@ -1,4 +1,56 @@
-L    assert.ok(Array.isArray(result))
+const { test, describe } = require('node:test')
+const assert = require('node:assert')
+const {dfs, bfs, dijkstra} = require('../algorithm.js')
+const {inputRange, singleNodeGraph, disconnectedGraph, cyclicGraph, linearGraph, denseGraph} = require('./mocks/ranges')
+const {charDist} = require('../heuristic')
+const { getChildren} = require('../graph.js')
+
+describe('Depth first search',()=>{
+  test('returns empty array for bad inputs',()=>{
+    inputRange.forEach(i=>assert.deepStrictEqual(dfs(i), []))
+  })
+
+  test('handles single node graph', () => {
+    const result = dfs(singleNodeGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles disconnected graph', () => {
+    const result = dfs(disconnectedGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles cyclic graph', () => {
+    const result = dfs(cyclicGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles linear graph', () => {
+    const result = dfs(linearGraph)
+    assert.ok(Array.isArray(result))
+  })
+
+  test('handles dense graph', () => {
+    const result = dfs(denseGraph)
+    assert.ok(Array.isArray(result))
+  })
+})
+
+describe('Breadth first search', () => {
+  test('returns empty array for bad inputs', () => {
+    inputRange.forEach(i => assert.deepStrictEqual(bfs(i), []))
+  })
+
+  test('handles single node graph', () => {
+    const node = {a: []}
+    const children = getChildren(node)
+    assert.deepStrictEqual(bfs(node), children)
+  })
+
+  test('handles cyclic graphs without infinite loops', () => {
+    const cyclicNode = {a: [{b: [{c: [{a: []}]}]}]}
+    const result = bfs(cyclicNode)
+    assert.ok(Array.isArray(result))
     assert.ok(result.length < 10) // Should not loop infinitely
   })
 
